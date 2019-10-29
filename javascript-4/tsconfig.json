@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+      "experimentalDecorators": true,
+    "module": "system",
+    "target": "es6",
+    "sourceMap": true,
+    "rootDir": "./"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
