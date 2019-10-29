@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="get-path.js"></script>
+<body>
+<div>
+    <p>
+        <b id="b">First B</b>
+        <b id="b">Second B</b>
+        <b id="b">Third B</b>
+    </p>
+    <div>
+        <span>I'm span</span>
+        <span id="span">I'm span too</span>
+        <span>span</span>
+        <div>DIV 1</div>
+        <div>DIV 2</div>
+        <div id="div">FIND ME!</div>
+        <div>~~~</div>
+        <div>~~~</div>
+        <div id="div">BUT NOT ME</div>
+        <div>~~~</div>
+        <div>~~~</div>
+        <div id="div">AND NOT ME</div>
+        <div>
+            <div>
+                <div id="div">...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script>
+  document.querySelector('body:nth-child(1)')
+
+  let path = getPath(document.getElementById('b'))
+  console.log(path)
+  console.log(document.querySelector(path))
+  console.log(document.querySelectorAll(path))
+  console.log(document.querySelectorAll(path).length)
+
+  path = getPath(document.getElementById('div'))
+  console.log(path)
+  console.log(document.querySelector(path))
+  console.log(document.querySelectorAll(path))
+  console.log(document.querySelectorAll(path).length)
+
+  path = getPath(document.getElementById('span'))
+  console.log(path)
+  console.log(document.querySelector(path))
+  console.log(document.querySelectorAll(path))
+  console.log(document.querySelectorAll(path).length)
+
+</script>
+</html>
