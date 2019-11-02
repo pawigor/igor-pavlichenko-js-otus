@@ -11,3 +11,12 @@
   }]
 }
 ```
+
+### Solution
+
+run 
+```bash
+npm i
+npm run dev
+```
+and open browser 'http://127.0.0.1:8081'

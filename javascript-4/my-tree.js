@@ -1,9 +1,9 @@
-import './my-leaf.js'
-import { html, LitElement } from './node_modules/lit-element/lit-element.js'
+import { html, LitElement } from 'lit-element'
+import './my-leaf'
 
 class MyTree extends LitElement {
 
-  static get properties () { return {tree: Object}};
+  static get properties () { return {tree: String}};
 
   render () {
     this.treeObj = (typeof this.tree === 'string' ? JSON.parse(this.tree) : this.tree)
