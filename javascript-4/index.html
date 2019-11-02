@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <script type="module" src="my-leaf.js"></script>
+    <script type="module" src="my-tree.js"></script>
 </head>
 <body>
+<script>
+    var obj = {
+        "id": 1,
+        "items": [{
+            "id": 2,
+            "items": [{"id": 3}]
+        }]
+    }
+</script>
+<my-tree :id="obj">
 
-<h1>test</h1>
-<my-tree>
-    <my-leaf>
-
-    </my-leaf>
 </my-tree>
-<script src="my-tree.js"></script>
-<script src="my-leaf.js"></script>
+
 </body>
 </html>
