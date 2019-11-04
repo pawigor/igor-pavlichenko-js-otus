@@ -1,5 +1,5 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {hello} from "./hello.ts";
+import {hello} from "./hello";
 
-render((<div>{hello}</div>), document.getElementsByTagName('body')[0]);
+render(<h1>{hello}</h1>, document.getElementsByTagName('body')[0]);
