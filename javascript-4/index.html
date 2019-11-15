@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module" src="my-tree.js"></script>
+</head>
+<body>
+<my-tree></my-tree>
+<script>
+  const obj = {
+    'id': 1,
+    'items': [{
+      'id': 2,
+      'items': [{'id': 3}, {'id': 4}]
+    }, {
+      'id': 5,
+      'items': [{'id': 6}, {'id': 7}, {'id': 8}]
+    }, {
+      'id': 9,
+      'items': [{'id': 10, items: [{'id': 11}, {'id': 12}]}]
+    }, {
+      'id': 13,
+      'items': null
+    }]
+  }
+  document.querySelector('my-tree').setAttribute('tree', JSON.stringify(obj))
+</script>
+</body>
+</html>
