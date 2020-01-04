@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 
 interface IProps {
     cities: string[]
@@ -7,28 +7,32 @@ interface IProps {
 }
 
 interface IState {
+    cityName: string
 }
 
 export class CityList extends React.Component<IProps, IState> {
-    private readonly cityRef: React.RefObject<HTMLInputElement>;
 
     constructor(props: IProps) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.cityRef = React.createRef();
+        this.handleChange = this.handleChange.bind(this);
+        this.state = {cityName: ''}
     }
 
     handleClick() {
-        if (this.cityRef.current) {
-            const city = this.cityRef.current.value;
-            this.props.onAddCity(city);
-            this.cityRef.current.value = '';
+        if (this.state.cityName.length > 0) {
+            this.props.onAddCity(this.state.cityName);
         }
     };
 
+    handleChange(event: ChangeEvent<HTMLInputElement>) {
+        const cityName = event.target.value
+        this.setState(() => ({cityName}))
+    }
+
     render() {
         return <div>
-            <input ref={this.cityRef} type="text" defaultValue={'London'}/>
+            <input value={this.state.cityName} type="text" onChange={this.handleChange}/>
             <button onClick={this.handleClick}>Ok</button>
             <ul>
                 {this.props.cities.map((city, i) => (<li key={i}>
