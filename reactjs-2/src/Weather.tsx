@@ -8,7 +8,7 @@ interface IProps {
 
 interface IState {
     cities: string[],
-    currentCityIndex: number,
+    currentCityName: string,
     weather: WeatherData | null
 }
 
@@ -19,21 +19,21 @@ export class Weather extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         console.log(props)
-        this.state = {currentCityIndex: 0, weather: null, cities: ['Moscow']}
+        this.state = {currentCityName: 'Moscow', weather: null, cities: ['Moscow']}
         this.addCity = this.addCity.bind(this);
         this.chooseCity = this.chooseCity.bind(this);
         this.style = {display: 'flex'}
     }
 
-    chooseCity(currentCityIndex: number) {
-        this.setState({currentCityIndex, weather: this.props.data[this.state.cities[currentCityIndex]]});
+    chooseCity(currentCityName: string) {
+        this.setState({currentCityName, weather: this.props.data[currentCityName]});
     }
 
-    addCity(city: string) {
+    addCity(cityName: string) {
         const cities = this.state.cities;
-        cities.push(city);
+        cities.push(cityName);
         this.setState({cities})
-        this.chooseCity(cities.length - 1)
+        this.chooseCity(cityName)
     }
 
     render() {

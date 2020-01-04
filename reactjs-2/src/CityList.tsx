@@ -35,8 +35,8 @@ export class CityList extends React.Component<IProps, IState> {
             <input value={this.state.cityName} type="text" onChange={this.handleChange}/>
             <button onClick={this.handleClick}>Ok</button>
             <ul>
-                {this.props.cities.map((city, i) => (<li key={i}>
-                    <button onClick={() => this.props.onChooseCity(i)}>{city}</button>
+                {this.props.cities.map(city => (<li key={city}>
+                    <button onClick={() => this.props.onChooseCity(city)}>{city}</button>
                 </li>))}
             </ul>
         </div>;
