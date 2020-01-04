@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react'
 
 interface IProps {
-    cities: string[]
+    cities: string[],
+    currentCityName: string,
     onAddCity: Function,
     onChooseCity: Function
 }
@@ -36,7 +37,8 @@ export class CityList extends React.Component<IProps, IState> {
             <button onClick={this.handleClick}>Ok</button>
             <ul>
                 {this.props.cities.map(city => (<li key={city}>
-                    <button onClick={() => this.props.onChooseCity(city)}>{city}</button>
+                    <button onClick={() => this.props.onChooseCity(city)}>{this.props.currentCityName === city &&
+                    <i>*</i>} {city}</button>
                 </li>))}
             </ul>
         </div>;
