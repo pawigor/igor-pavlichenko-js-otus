@@ -1,23 +1,47 @@
-export enum Actions {
-    ADD_CITY = 'ADD_CITY',
-    CHOOSE_CITY = 'CHOOSE_CITY'
+import {createActions, handleActions} from 'redux-actions'
+
+export interface IState {
+    title: string,
+    cities: Array<string>,
+    currentCityName?: string
+    weather?: WeatherData,
+    data: any,
+    addCity: (cityName: string) => void
+    chooseCity: (cityName: string) => void
 }
 
-export interface IActionIncDec {
-    type?: Actions
+export interface IPayload {
+    type?: string,
+    cityName?: string
 }
 
-import data from './data'
-
-export default (state = {title: 'Weather app', cities: ['Moscow'], data}, action: IActionIncDec) => {
-    const {type} = action
-
-    switch (type) {
-        case Actions.ADD_CITY:
-
-        case Actions.CHOOSE_CITY:
-
-        default:
-            return state
-    }
+const defaultState: IState = {
+    title: 'Weather app',
+    cities: [],
+    currentCityName: undefined,
+    weather: undefined,
+    data: {}
 }
+
+//payload creator
+export const Actions = createActions({
+    addCity: (cityName: string) => ({cityName}),
+    chooseCity: (cityName: string) => ({cityName})
+});
+
+
+export const {addCity, chooseCity} = Actions
+
+const reducer = handleActions<IState, IPayload>({
+    addCity: (state, {payload}) => {
+        const {cities} = state;
+        if (payload.cityName != undefined) {
+            cities.push(payload.cityName)
+        }
+        return {...state, cities, currentCityName: payload.cityName}
+    },
+    chooseCity: (state, {payload}) => ({...state, currentCityName: payload.cityName})
+}, defaultState)
+
+
+export default reducer;

@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {CityList} from "./CityList";
 import {WeatherInfo} from "./WeatherInfo";
 
+import {connect} from 'react-redux'
+
 interface IProps {
     cities: string[],
     currentCityName: string,
-    data: any,
-    addCity: (cityName:string) => void,
-    chooseCity: (cityName:string) => void,
+    addCity: (cityName: string) => void,
+    chooseCity: (cityName: string) => void,
+    weather: any,
 }
 
 interface IState {
@@ -23,33 +25,34 @@ export class Weather extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {currentCityName: props.currentCityName, weather: null, cities: props.cities}
-        // this.addCity = this.addCity.bind(this);
-        // this.chooseCity = this.chooseCity.bind(this);
         this.style = {display: 'flex'}
-    }
-
-    chooseCity(currentCityName: string) {
-        this.setState({currentCityName, weather: this.props.data[currentCityName]});
-    }
-
-    addCity(cityName: string) {
-        const cities = this.state.cities;
-        cities.push(cityName);
-        this.setState({cities, currentCityName: ''})
-        this.chooseCity(cityName)
     }
 
     render() {
         return (<div style={this.style}>
             <CityList
-                cities={this.state.cities}
-                currentCityName={this.state.currentCityName}
-                onChooseCity={this.chooseCity}
-                onAddCity={this.addCity}
+                cities={this.props.cities}
+                currentCityName={this.props.currentCityName}
+                onChooseCity={this.props.chooseCity}
+                onAddCity={this.props.addCity}
             />
             <WeatherInfo
-                weather={this.state.weather}
+                weather={this.props.weather}
             />
         </div>);
     }
 }
+
+const mapStateToProps = state => {
+    const {addCity, chooseCity, currentCityName, cities, weather} = state
+    console.log(state)
+    return {
+        addCity,
+        chooseCity,
+        currentCityName,
+        cities,
+        weather
+    }
+}
+
+export default connect(mapStateToProps)(Weather)
