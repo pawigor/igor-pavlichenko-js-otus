@@ -5,7 +5,9 @@ import {WeatherInfo} from "./WeatherInfo";
 interface IProps {
     cities: string[],
     currentCityName: string,
-    data: any
+    data: any,
+    addCity: (cityName:string) => void,
+    chooseCity: (cityName:string) => void,
 }
 
 interface IState {
@@ -21,8 +23,8 @@ export class Weather extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {currentCityName: props.currentCityName, weather: null, cities: props.cities}
-        this.addCity = this.addCity.bind(this);
-        this.chooseCity = this.chooseCity.bind(this);
+        // this.addCity = this.addCity.bind(this);
+        // this.chooseCity = this.chooseCity.bind(this);
         this.style = {display: 'flex'}
     }
 

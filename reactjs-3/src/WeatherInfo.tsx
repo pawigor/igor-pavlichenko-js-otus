@@ -15,11 +15,13 @@ export class WeatherInfo extends Component<IProps, IState> {
     render() {
         return (
             <div>
-                <ul>{
-                    this.props.weather && (
-                        <li>Temperature: {this.props.weather.main.temp}</li>
-                    )}
-                </ul>
+                {this.props.weather && (
+                    <ul>
+                        <li>Temperature: {this.props.weather.temp}</li>
+                        <li>Pressure: {this.props.weather.pressure}</li>
+                        <li>Humidity: {this.props.weather.humidity}</li>
+                    </ul>
+                )}
             </div>
         );
     }

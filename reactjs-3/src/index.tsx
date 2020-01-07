@@ -1,13 +1,15 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {title} from "./title";
+import weather from './weather'
+import {createStore} from "redux";
 import {Weather} from './Weather'
-import data from './data'
 
+const store = createStore(weather)
+let state = store.getState();
 render(
     <div>
-        <h1>{title}</h1>
-        <Weather cities={['Moscow']} currentCityName={'Moscow'} data={data}/>
+        <h1>{state.title}</h1>
+        <Weather cities={state.cities} currentCityName={'Moscow'} data={state.data}/>
     </div>
     , document.getElementById('app')
 );

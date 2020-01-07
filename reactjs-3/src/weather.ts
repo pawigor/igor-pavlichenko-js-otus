@@ -1,23 +1,23 @@
-interface WeatherData {
-    coord: {
-        lon: number,
-        lat: number
-    },
-    weather: {
-        id: number,
-        main: string,
-        description: string,
-        icon: string
-    },
-    main: {
-        temp: number,
-        pressure: number,
-        humidity: number,
-        temp_min: number,
-        temp_max: number,
-    },
-    wind: {
-        speed: number,
-        deg: number
+export enum Actions {
+    ADD_CITY = 'ADD_CITY',
+    CHOOSE_CITY = 'CHOOSE_CITY'
+}
+
+export interface IActionIncDec {
+    type?: Actions
+}
+
+import data from './data'
+
+export default (state = {title: 'Weather app', cities: ['Moscow'], data}, action: IActionIncDec) => {
+    const {type} = action
+
+    switch (type) {
+        case Actions.ADD_CITY:
+
+        case Actions.CHOOSE_CITY:
+
+        default:
+            return state
     }
 }
