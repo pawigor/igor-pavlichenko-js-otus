@@ -3,8 +3,8 @@ import React, {ChangeEvent} from 'react'
 interface IProps {
     cities: string[],
     currentCityName: string,
-    onAddCity: Function,
-    onChooseCity: Function
+    addCity: Function,
+    chooseCity: Function
 }
 
 interface IState {
@@ -22,7 +22,7 @@ export class CityList extends React.Component<IProps, IState> {
 
     handleClick() {
         if (this.state.cityName.length > 0) {
-            this.props.onAddCity(this.state.cityName);
+            this.props.addCity(this.state.cityName);
         }
     };
 
@@ -36,8 +36,8 @@ export class CityList extends React.Component<IProps, IState> {
             <input value={this.state.cityName} type="text" onChange={this.handleChange}/>
             <button onClick={this.handleClick}>Ok</button>
             <ul>
-                {this.props.cities.map(city => (<li key={city}>
-                    <button onClick={() => this.props.onChooseCity(city)}>{this.props.currentCityName === city &&
+                {(console.log(this.props)||true) && this.props.cities.map(city => (<li key={city}>
+                    <button onClick={() => this.props.chooseCity(city)}>{this.props.currentCityName === city &&
                     <i>*</i>} {city}</button>
                 </li>))}
             </ul>

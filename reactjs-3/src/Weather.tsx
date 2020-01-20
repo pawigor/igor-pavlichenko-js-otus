@@ -20,11 +20,11 @@ interface IState {
 
 export class Weather extends Component<IProps, IState> {
     state: IState;
-    private style: any;
+    private readonly style: any;
 
     constructor(props: IProps) {
         super(props);
-        this.state = {currentCityName: props.currentCityName, weather: null, cities: props.cities}
+        this.state = {currentCityName: props.currentCityName, weather: null, cities: props.cities};
         this.style = {display: 'flex'}
     }
 
@@ -33,8 +33,8 @@ export class Weather extends Component<IProps, IState> {
             <CityList
                 cities={this.props.cities}
                 currentCityName={this.props.currentCityName}
-                onChooseCity={this.props.chooseCity}
-                onAddCity={this.props.addCity}
+                chooseCity={this.props.chooseCity}
+                addCity={this.props.addCity}
             />
             <WeatherInfo
                 weather={this.props.weather}
@@ -43,16 +43,7 @@ export class Weather extends Component<IProps, IState> {
     }
 }
 
-const mapStateToProps = state => {
-    const {addCity, chooseCity, currentCityName, cities, weather} = state
-    console.log(state)
-    return {
-        addCity,
-        chooseCity,
-        currentCityName,
-        cities,
-        weather
-    }
-}
+const mapStateToProps = (state: IState) => state;
+
 
 export default connect(mapStateToProps)(Weather)
